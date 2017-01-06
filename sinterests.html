@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Travel Interests</title>
+<link href="s.css" rel="stylesheet" type="text/css" />
+<script src="background.js" async="async" type="text/javascript"></script>
+</head>
+
+<body>
+
+<canvas id="surface" width="600" height="600"></canvas>
+
+<table width="1000" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img src="Images/banner.gif" alt=""/></td>
+  </tr>
+  <tr>
+    <td><table width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><a href="index.html"><button class="homeStyle">Home</button></a></td>
+        <td><a href="hobbies.html"><button class="homeStyle">Hobbies</button></a></td>
+        <td><a href="links.html"><button class="homeStyle">Links</button></a></td>
+        
+        <td><div class="bio" z-index="1">
+  <button class="homeStyle">Bio</button>
+  <div class="bio-content" z-index="1">
+    <a href="bio.html">Bio Home</a>
+    <a href="kalbum.html">Bio Web Album</a>
+    <a href="klinks.html">Bio Links</a>
+  </div>
+</div></td>
+        <td><div class="bio" z-index="1">
+  <button class="homeStyle">Travel Log</button>
+  <div class="bio-content" z-index="1">
+    <a href="smaps.html">Maps</a>
+    <a href="splaces.html">Places</a>
+    <a href="sculture.html">Culture</a>
+    <a href="sinterests.html">Interests</a>
+    <a href="salbum.html">Album</a>
+    <a href="slinks.html">Links</a>
+  </div>
+</div></td>
+        <td><a href="dream.html"><button class="homeStyle">Dream House</button></a></td>
+      </tr>
+    </table></td>
+  </tr>
+      		  </table></td>
+       		  <td align="left" valign="top"><h2>Traveling via the Trans-siberian Railroad?</h>
+       		    <h3>Here are some things that you should see while on your Journey.</h3>
+       		    <table width="100%" cellspacing="0" cellpadding="0">
+       		      <tr>
+       		        <td><ul class="photo-grid" z-index="-.5">
+                <li>
+                <figure z-index="-.5">
+				<img src="images/56-3953791-125083668-20cc78b716-o.jpg"  alt="St. Petersbourg">
+				<figcaption z-index="-.5"><p>St. Petersbourg</p></figcaption>
+			</figure>
+            </li>
+                </ul></td>
+       		        <td><ul class="photo-grid" z-index="-.5">
+                <li z-index="-.5">
+                <figure z-index="-.5">
+				<img src="images/56-3953809-9331043625-e5391a4674-o.jpg"  alt="Yekaterinburg and the Ural Mountains">
+				<figcaption z-index="-.5"><p>The Awesome and beautiful Ural Mountains of Yekaterinburg</p></figcaption>
+			</figure>
+            </li>
+                </ul></td>
+       		        <td><ul class="photo-grid" z-index="-.5">
+                <li>
+                <figure z-index="-.5">
+				<img src="images/56-3953811-7212727854-004c61effa-k.jpg"  alt="The Kazan Kremlin Fortress">
+				<figcaption z-index="-.5"><p>The Kazan Kremlin Fortress</p></figcaption>
+			</figure>
+            </li>
+                </ul></td>
+   		          </tr>
+       		      <tr>
+       		        <td></ul>
+                <br />
+                <ul class="photo-grid" z-index="-.5">
+                <li>
+                <figure z-index="-.5">
+				<img src="images/56-3953797-6030440632-6b3e52ec70-o.jpg"  alt="Lake Baikal">
+				<figcaption z-index="-.5"><p>Lake Baikal</p></figcaption>
+			</figure>
+            </li>
+                </ul></td>
+       		        <td><ul class="photo-grid" z-index="-.5">
+                <li>
+                <figure z-index="-.5">
+				<img src="images/56-3952293-14423036682c52679de44c4864a7047779a4ee63ef.jpg"  alt="Ulan-Ude">
+				<figcaption z-index="-.5"><p>Ulan-Ude</p></figcaption>
+			</figure>
+            </li>
+                </ul></td>
+       		        
+   		          </tr>
+   		        </table>
+       		    <p>For the most part, however, this trip is very boring<p></td>
+                
+                
+   		</tr>
+    </table></td>
+  </tr>
+</table>
+<script>
+	var SCREEN_WIDTH = window.innerWidth;
+var SCREEN_HEIGHT = window.innerHeight;
+
+var RADIUS = 70;
+
+var RADIUS_SCALE = 1;
+var RADIUS_SCALE_MIN = 1;
+var RADIUS_SCALE_MAX = 1.5;
+
+var QUANTITY = 25;
+
+var canvas;
+var context;
+var particles;
+
+var mouseX = SCREEN_WIDTH * 0.5;
+var mouseY = SCREEN_HEIGHT * 0.5;
+var mouseIsDown = false;
+
+function init() {
+
+  canvas = document.getElementById( 'world' );
+  
+  if (canvas && canvas.getContext) {
+        context = canvas.getContext('2d');
+        
+        // Register event listeners
+        window.addEventListener('mousemove', documentMouseMoveHandler, false);
+        window.addEventListener('mousedown', documentMouseDownHandler, false);
+        window.addEventListener('mouseup', documentMouseUpHandler, false);
+        document.addEventListener('touchstart', documentTouchStartHandler, false);
+        document.addEventListener('touchmove', documentTouchMoveHandler, false);
+        window.addEventListener('resize', windowResizeHandler, false);
+        
+        createParticles();
+        
+        windowResizeHandler();
+        
+        setInterval( loop, 1000 / 60 );
+    }
+}
+
+function createParticles() {
+    particles = [];
+    
+    for (var i = 0; i < QUANTITY; i++) {
+        var particle = {
+            size: 1,
+            position: { x: mouseX, y: mouseY },
+            offset: { x: 0, y: 0 },
+            shift: { x: mouseX, y: mouseY },
+            speed: 0.01+Math.random()*0.04,
+            targetSize: 1,
+            fillColor: '#' + (Math.random() * 0x404040 + 0xaaaaaa | 0).toString(16),
+            orbit: RADIUS*.5 + (RADIUS * .5 * Math.random())
+        };
+        
+        particles.push( particle );
+    }
+}
+
+function documentMouseMoveHandler(event) {
+    mouseX = event.clientX - (window.innerWidth - SCREEN_WIDTH) * .5;
+    mouseY = event.clientY - (window.innerHeight - SCREEN_HEIGHT) * .5;
+}
+
+function documentMouseDownHandler(event) {
+    mouseIsDown = true;
+}
+
+function documentMouseUpHandler(event) {
+    mouseIsDown = false;
+}
+
+function documentTouchStartHandler(event) {
+    if(event.touches.length == 1) {
+        event.preventDefault();
+
+        mouseX = event.touches[0].pageX - (window.innerWidth - SCREEN_WIDTH) * .5;;
+        mouseY = event.touches[0].pageY - (window.innerHeight - SCREEN_HEIGHT) * .5;
+    }
+}
+
+function documentTouchMoveHandler(event) {
+    if(event.touches.length == 1) {
+        event.preventDefault();
+
+        mouseX = event.touches[0].pageX - (window.innerWidth - SCREEN_WIDTH) * .5;;
+        mouseY = event.touches[0].pageY - (window.innerHeight - SCREEN_HEIGHT) * .5;
+    }
+}
+
+function windowResizeHandler() {
+    SCREEN_WIDTH = window.innerWidth;
+    SCREEN_HEIGHT = window.innerHeight;
+    
+    canvas.width = SCREEN_WIDTH;
+	canvas.height = SCREEN_HEIGHT;
+}
+
+function loop() {
+    
+    if( mouseIsDown ) {
+        RADIUS_SCALE += ( RADIUS_SCALE_MAX - RADIUS_SCALE ) * (0.02);
+    }
+    else {
+        RADIUS_SCALE -= ( RADIUS_SCALE - RADIUS_SCALE_MIN ) * (0.02);
+    }
+    
+    RADIUS_SCALE = Math.min( RADIUS_SCALE, RADIUS_SCALE_MAX );
+    
+    context.fillStyle = 'rgba(0,0,0,0)';
+         context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+    
+    for (i = 0, len = particles.length; i < len; i++) {
+        var particle = particles[i];
+        
+        var lp = { x: particle.position.x, y: particle.position.y };
+        
+        // Rotation
+        particle.offset.x += particle.speed;
+        particle.offset.y += particle.speed;
+        
+        // Follow mouse with some lag
+        particle.shift.x += ( mouseX - particle.shift.x) * (particle.speed);
+        particle.shift.y += ( mouseY - particle.shift.y) * (particle.speed);
+        
+        // Apply position
+        particle.position.x = particle.shift.x + Math.cos(i + particle.offset.x) * (particle.orbit*RADIUS_SCALE);
+        particle.position.y = particle.shift.y + Math.sin(i + particle.offset.y) * (particle.orbit*RADIUS_SCALE);
+        
+        // Limit to screen bounds
+        particle.position.x = Math.max( Math.min( particle.position.x, SCREEN_WIDTH ), 0 );
+        particle.position.y = Math.max( Math.min( particle.position.y, SCREEN_HEIGHT ), 0 );
+        
+        particle.size += ( particle.targetSize - particle.size ) * 0.05;
+        
+        if( Math.round( particle.size ) == Math.round( particle.targetSize ) ) {
+            particle.targetSize = 1 + Math.random() * 7;
+        }
+        
+        context.beginPath();
+        context.fillStyle = particle.fillColor;
+        context.strokeStyle = particle.fillColor;
+        context.lineWidth = particle.size;
+        context.moveTo(lp.x, lp.y);
+        context.lineTo(particle.position.x, particle.position.y);
+        context.stroke();
+        context.arc(particle.position.x, particle.position.y, particle.size/2, 0, Math.PI*2, true);
+        context.fill();
+    }
+}
+
+window.onload = init;
+	</script>
+    <canvas id='world'></canvas>
+</body>
+</html>

